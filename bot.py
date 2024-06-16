@@ -3,6 +3,7 @@ import telebot
 
 bot = telebot.TeleBot(client.TOKEN)
 @bot.message_handler(commands=['start'])
+bot.send_message("Привет")
 def start(message):
     # Отправляем сообщение с просьбой отправить свой ID
     bot.send_message(message.chat.id, "Привет! Чтобы получить свой Telegram ID, нажмите на кнопку ниже.", reply_markup=types.ReplyKeyboardRemove())
