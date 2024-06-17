@@ -18,7 +18,7 @@ def send_welcome(message):
 def handle_query(call):
     if call.data == "play":
         # Отправляем невидимую команду /game
-        bot.answer_callback_query(call.id, text="Команда /game активирована", show_alert=False)
+        bot.send_message(call.message.chat.id, '/game')
         # Здесь можно добавить дополнительные действия, например, запуск игры
 
 # Запускаем бота
