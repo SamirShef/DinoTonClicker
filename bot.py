@@ -8,7 +8,10 @@ def send_welcome(message):
     bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAKnLWZwTe1XxbwDhMZbneoCHb_Rs_rUAAJ6AAMQIQIQAALHI6TJuQU1BA')
     
     # Отправляем текстовое сообщение
-    bot.send_message(message.chat.id, 'даров, баран')
+    markup = types.InlineKeyboardMarkup()
+    play_button = types.InlineKeyboardButton(text="Играть", url="https://samirshef.github.io/DinoTonClicker/")
+    markup.add(play_button)
+    bot.send_message(message.chat.id, 'даров, баран', reply_markup=markup)
 
 # Запускаем бота
 bot.polling()
