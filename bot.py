@@ -14,12 +14,5 @@ def send_welcome(message):
     markup.add(play_button)
     bot.send_message(message.chat.id, 'Приветственное сообщение для пользователя', reply_markup=markup)
 
-@bot.callback_query_handler(func=lambda call: True)
-def handle_query(call):
-    if call.data == "play":
-        # Отправляем невидимую команду /game
-        bot.send_message(call.message.chat.id, '/game')
-        # Здесь можно добавить дополнительные действия, например, запуск игры
-
 # Запускаем бота
 bot.polling()
