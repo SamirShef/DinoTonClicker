@@ -10,9 +10,16 @@ def send_welcome(message):
     
     # Отправляем текстовое сообщение
     markup = types.InlineKeyboardMarkup()
-    play_button = types.InlineKeyboardButton(text="Играть", url="https://samirshef.github.io/DinoTonClicker/")
+    play_button = types.InlineKeyboardButton(text="Играть", callback_data="play")
     markup.add(play_button)
-    bot.send_message(message.chat.id, 'даров, баран', reply_markup=markup)
+    bot.send_message(message.chat.id, 'Приветственное сообщение для пользователя', reply_markup=markup)
+
+@bot.callback_query_handler(func=lambda call: True)
+def handle_query(call):
+    if call.data == "play":
+        # Отправляем невидимую команду /game
+        bot.answer_callback_query(call.id, text="Команда /game активирована", show_alert=False)
+        # Здесь можно добавить дополнительные действия, например, запуск игры
 
 # Запускаем бота
 bot.polling()
