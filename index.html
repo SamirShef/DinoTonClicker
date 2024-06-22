@@ -24,6 +24,7 @@
       </div>
     </div>
     <script>
+      var unityInstance;
       var canvas = document.querySelector("#unity-canvas");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
@@ -96,10 +97,7 @@
       document.querySelector("#unity-loading-bar").style.display = "block";
 
       var script = document.createElement("script");
-      script.src = loaderUrl;
-
-      var unityInstance;
-      
+      script.src = loaderUrl;      
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
