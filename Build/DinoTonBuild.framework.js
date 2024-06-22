@@ -1506,12 +1506,18 @@ var ASM_CONSTS = {
           {
               firebase.database().ref(parsedPath).once('value').then(function(snapshot)
               {
-                  unityInstance.Module.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
+                  if (typeof unityInstance !== 'undefined' && typeof unityInstance.Module !== 'undefined') 
+                  {
+                      unityInstance.Module.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
+                  }
               });
           }
           catch (error)
           {
-              unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, "This error is: " + error.message);
+              if (typeof unityInstance !== 'undefined' && typeof unityInstance.Module !== 'undefined') 
+              {
+                  unityInstance.SendMessage(parsedObjectName, parsedFallback, "This error is: " + error.message);
+              }
           }
       }
 
