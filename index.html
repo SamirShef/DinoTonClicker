@@ -97,6 +97,9 @@
 
       var script = document.createElement("script");
       script.src = loaderUrl;
+
+      var unityInstance;
+      
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
