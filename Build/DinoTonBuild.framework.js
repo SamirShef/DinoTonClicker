@@ -1495,25 +1495,31 @@ var ASM_CONSTS = {
       }
     }
 
-  function _GetJSON(path, objectName, callback, fallback)
-      {
-          var parsedPath = UTF8ToString(path);
-          var parsedObjectName = UTF8ToString(objectName);
-          var parsedCallback = UTF8ToString(callback);
-          var parsedFallback = UTF8ToString(fallback);
+  function _GetJSON(path, objectName, callback, fallback) {
+      var parsedPath = UTF8ToString(path);
+      var parsedObjectName = UTF8ToString(objectName);
+      var parsedCallback = UTF8ToString(callback);
+      var parsedFallback = UTF8ToString(fallback);
   
-          try
-          {
-              firebase.database().ref(parsedPath).once('value').then(function(snapshot)
-              {
-                  unityInstance.Module.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
-              });
-          }
-          catch (error)
-          {
-              unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, "This error is: " + error.message);
-          }
+      // �������� ������� unityInstance � ��� Module
+      if (typeof unityInstance === 'undefined' || typeof unityInstance.Module === 'undefined') {
+        console.error('unityInstance ��� unityInstance.Module �� ����������.');
+        return;
       }
+  
+      try {
+        firebase.database().ref(parsedPath).once('value').then(function(snapshot) {
+          // �������� ������ ������� � Unity
+          unityInstance.Module.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
+        }).catch(function(error) {
+          // ��������� ������ ������� � ���� ������ Firebase
+          unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, "������ ������� � Firebase: " + error.message);
+        });
+      } catch (error) {
+        // ��������� ������ ������
+        unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, "��������� ������: " + error.message);
+      }
+    }
 
   var JS_Accelerometer = null;
   
