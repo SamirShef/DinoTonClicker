@@ -1511,10 +1511,7 @@ var ASM_CONSTS = {
           }
           catch (error)
           {
-              firebase.database().ref(parsedPath).once('value').then(function(snapshot)
-              {
-                  unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, "This error is: " + error.message);
-              });
+              unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, "This error is: " + error.message);
           }
       }
 
