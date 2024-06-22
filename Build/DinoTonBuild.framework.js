@@ -1496,24 +1496,24 @@ var ASM_CONSTS = {
     }
 
   function _GetJSON(path, objectName, callback, fallback)
-  	{
-  		var parsedPath = UTF8ToString(path);
-  		var parsedObjectName = UTF8ToString(objectName);
-  		var parsedCallback = UTF8ToString(callback);
-  		var parsedFallback = UTF8ToString(fallback);
+      {
+          var parsedPath = UTF8ToString(path);
+          var parsedObjectName = UTF8ToString(objectName);
+          var parsedCallback = UTF8ToString(callback);
+          var parsedFallback = UTF8ToString(fallback);
   
-  		try
-  		{
-  			firebase.database().ref(parsedPath).once().then(function(snapshot)
-  			{
-  				window.unityInstance.Module.SenMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
-  			});
-  		}
-  		catch (error)
-  		{
-  			window.unityInstance.Module.SenMessage(parsedObjectName, parsedFallback, "This error is: " + error.message);
-  		}
-  	}
+          try
+          {
+              firebase.database().ref(parsedPath).once('value').then(function(snapshot)
+              {
+                  unityInstance.Module.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
+              });
+          }
+          catch (error)
+          {
+              unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, "This error is: " + error.message);
+          }
+      }
 
   var JS_Accelerometer = null;
   
