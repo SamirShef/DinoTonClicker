@@ -29,6 +29,24 @@
 
         // Инициализация Firebase
         firebase.initializeApp(firebaseConfig);
+
+          // Функция для загрузки и инициализации .framework.js
+  function loadFramework() {
+    var script = document.createElement('script');
+    script.src = 'Build/.framework.js';
+    script.onload = function() {
+      console.log('.framework.js загружен и готов к использованию');
+      // Здесь можно вызвать любые функции из .framework.js, если это необходимо
+    };
+    document.body.appendChild(script);
+  }
+
+  // Проверка, загружен ли Firebase
+  if (typeof firebase !== 'undefined') {
+    loadFramework();
+  } else {
+    window.addEventListener('load', loadFramework);
+  }
       });
     </script>
 </head>
