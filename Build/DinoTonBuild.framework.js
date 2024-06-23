@@ -1495,32 +1495,6 @@ var ASM_CONSTS = {
       }
     }
 
-  function _GetJSON(path, objectName, callback, fallback)
-      {
-          var parsedPath = UTF8ToString(path);
-          var parsedObjectName = UTF8ToString(objectName);
-          var parsedCallback = UTF8ToString(callback);
-          var parsedFallback = UTF8ToString(fallback);
-  
-          try
-          {
-              firebase.database().ref(parsedPath).once('value').then(function(snapshot)
-              {
-                  if (typeof unityInstance !== 'undefined' && typeof unityInstance.Module !== 'undefined') 
-                  {
-                      unityInstance.Module.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
-                  }
-              });
-          }
-          catch (error)
-          {
-              if (typeof unityInstance !== 'undefined' && typeof unityInstance.Module !== 'undefined') 
-              {
-                  unityInstance.SendMessage(parsedObjectName, parsedFallback, "This error is: " + error.message);
-              }
-          }
-      }
-
   var JS_Accelerometer = null;
   
   var JS_Accelerometer_callback = 0;
@@ -7247,6 +7221,26 @@ var ASM_CONSTS = {
           Module["WebGPU"].aadapter = wgpu[adapter];
           Module["WebGPU"].device = wgpu[device];
       }
+
+  function _SetString(path, objName, successCallback, errorCallback) 
+    {
+      var str = UTF8ToString(path);
+      var passedObjName = UTF8ToString(objName);
+      var onSuccess = UTF8ToString(successCallback);
+      var onError = UTF8ToString(errorCallback);
+  
+      firebase.database().ref('test').set(str)
+        .then(function() 
+        {
+          console.log('String sent to Firebase successfully.');
+          unityInstance.SendMessage(passedObjName, onSuccess);
+        })
+        .catch(function(error) 
+        {
+          console.error('Error sending string to Firebase:', error);
+          unityInstance.SendMessage(passedObjName, onError, error.message);
+        });
+    }
 
   function ___assert_fail(condition, filename, line, func) {
       abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
@@ -16615,7 +16609,6 @@ function checkIncomingModuleAPI() {
 var wasmImports = {
   "GetJSLoadTimeInfo": _GetJSLoadTimeInfo,
   "GetJSMemoryInfo": _GetJSMemoryInfo,
-  "GetJSON": _GetJSON,
   "JS_Accelerometer_IsRunning": _JS_Accelerometer_IsRunning,
   "JS_Accelerometer_Start": _JS_Accelerometer_Start,
   "JS_Accelerometer_Stop": _JS_Accelerometer_Stop,
@@ -16694,6 +16687,7 @@ var wasmImports = {
   "JS_UnityEngineShouldQuit": _JS_UnityEngineShouldQuit,
   "JS_WebGPU_SetCommandEncoder": _JS_WebGPU_SetCommandEncoder,
   "JS_WebGPU_Setup": _JS_WebGPU_Setup,
+  "SetString": _SetString,
   "__assert_fail": ___assert_fail,
   "__cxa_begin_catch": ___cxa_begin_catch,
   "__cxa_end_catch": ___cxa_end_catch,
