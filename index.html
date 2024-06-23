@@ -148,6 +148,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
 
     <script>
+        window.addEventListener('load', function () {
           var firebaseConfig = {
               apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
           authDomain: "dinotondb.firebaseapp.com",
@@ -158,7 +159,8 @@
           appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
           measurementId: "G-5JLMQ8WQYP"
         };
-        firebase.initializeApp(firebaseConfig);
+            firebase.initializeApp(firebaseConfig);
+        });
     </script>
   </body>
 </html>
