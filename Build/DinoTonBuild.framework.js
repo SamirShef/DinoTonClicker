@@ -7223,8 +7223,8 @@ var ASM_CONSTS = {
       }
 
   function _SetData(path, value) {
-      var strPath = Pointer_stringify(path);
-      var strValue = Pointer_stringify(value);
+      var strPath = UTF8ToString(path);
+      var strValue = UTF8ToString(value);
       firebase.database().ref(strPath).set(strValue)
         .then(function() {
           console.log('Data set successfully');
