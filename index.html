@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity Web Player | DinoTon</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    
     <!-- Firebase App (обязательный) -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
 
     <!-- Firebase Database (по желанию) -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
 
     <script>
+      window.addEventListener('load', function() {
         // Конфигурация вашего проекта Firebase
         var firebaseConfig = {
             apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
@@ -22,13 +29,8 @@
 
         // Инициализация Firebase
         firebase.initializeApp(firebaseConfig);
+      });
     </script>
-
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | DinoTon</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
 </head>
 <body>
     <div id="unity-container" class="unity-desktop">
@@ -165,6 +167,26 @@
 
         document.body.appendChild(script);
 
+        if (typeof firebase == 'undefined') {
+  console.error('Firebase не инициализирован');
+}
+        // Функция для загрузки и инициализации .framework.js
+  function loadFramework() {
+    var script = document.createElement('script');
+    script.src = 'Build/.framework.js';
+    script.onload = function() {
+      console.log('.framework.js загружен и готов к использованию');
+      // Здесь можно вызвать любые функции из .framework.js, если это необходимо
+    };
+    document.body.appendChild(script);
+  }
+
+  // Проверка, загружен ли Firebase
+  if (typeof firebase !== 'undefined') {
+    loadFramework();
+  } else {
+    window.addEventListener('load', loadFramework);
+  }
     </script>
 </body>
 </html>
