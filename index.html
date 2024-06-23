@@ -14,6 +14,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
 
     <script>
+      window.addEventListener('load', function() {
         // Конфигурация вашего проекта Firebase
         var firebaseConfig = {
             apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
@@ -28,6 +29,7 @@
 
         // Инициализация Firebase
         firebase.initializeApp(firebaseConfig);
+      });
     </script>
 </head>
 <body>
