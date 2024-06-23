@@ -23,7 +23,7 @@
         }
 
         loadFirebase(function () {
-            const firebaseConfig = {
+            var firebaseConfig = {
                 apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
                 authDomain: "dinotondb.firebaseapp.com",
                 databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
@@ -33,6 +33,7 @@
                 appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
                 measurementId: "G-5JLMQ8WQYP"
             };
+            firebase.initializeApp(firebaseConfig);
         });
     </script>
 </head>
