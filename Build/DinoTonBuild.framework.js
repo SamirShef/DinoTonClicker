@@ -1182,13 +1182,13 @@ function dbg(text) {
 // === Body ===
 
 var ASM_CONSTS = {
-  5771904: () => { return Module.webglContextAttributes.premultipliedAlpha; },  
- 5771965: () => { return Module.webglContextAttributes.preserveDrawingBuffer; },  
- 5772029: () => { return Module.webglContextAttributes.powerPreference; },  
- 5772087: () => { Module['emscripten_get_now_backup'] = performance.now; },  
- 5772142: ($0) => { performance.now = function() { return $0; }; },  
- 5772190: ($0) => { performance.now = function() { return $0; }; },  
- 5772238: () => { performance.now = Module['emscripten_get_now_backup']; }
+  5771872: () => { return Module.webglContextAttributes.premultipliedAlpha; },  
+ 5771933: () => { return Module.webglContextAttributes.preserveDrawingBuffer; },  
+ 5771997: () => { return Module.webglContextAttributes.powerPreference; },  
+ 5772055: () => { Module['emscripten_get_now_backup'] = performance.now; },  
+ 5772110: ($0) => { performance.now = function() { return $0; }; },  
+ 5772158: ($0) => { performance.now = function() { return $0; }; },  
+ 5772206: () => { performance.now = Module['emscripten_get_now_backup']; }
 };
 
 
@@ -7222,23 +7222,15 @@ var ASM_CONSTS = {
           Module["WebGPU"].device = wgpu[device];
       }
 
-  function _SetString(path, objName, successCallback, errorCallback) 
-    {
-      var str = UTF8ToString(path);
-      var passedObjName = UTF8ToString(objName);
-      var onSuccess = UTF8ToString(successCallback);
-      var onError = UTF8ToString(errorCallback);
-  
-      firebase.database().ref('test').set(str)
-        .then(function() 
-        {
-          console.log('String sent to Firebase successfully.');
-          unityInstance.SendMessage(passedObjName, onSuccess);
+  function _SetData(path, value) {
+      var strPath = Pointer_stringify(path);
+      var strValue = Pointer_stringify(value);
+      firebase.database().ref(strPath).set(strValue)
+        .then(function() {
+          console.log('Data set successfully');
         })
-        .catch(function(error) 
-        {
-          console.error('Error sending string to Firebase:', error);
-          unityInstance.SendMessage(passedObjName, onError, error.message);
+        .catch(function(error) {
+          console.error('Error setting data:', error);
         });
     }
 
@@ -16687,7 +16679,7 @@ var wasmImports = {
   "JS_UnityEngineShouldQuit": _JS_UnityEngineShouldQuit,
   "JS_WebGPU_SetCommandEncoder": _JS_WebGPU_SetCommandEncoder,
   "JS_WebGPU_Setup": _JS_WebGPU_Setup,
-  "SetString": _SetString,
+  "SetData": _SetData,
   "__assert_fail": ___assert_fail,
   "__cxa_begin_catch": ___cxa_begin_catch,
   "__cxa_end_catch": ___cxa_end_catch,

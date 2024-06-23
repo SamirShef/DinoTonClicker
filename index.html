@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
+    <!-- Firebase App (обязательный) -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+
+    <!-- Firebase Database (по желанию) -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+
+    <script>
+        // Конфигурация вашего проекта Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
+            authDomain: "dinotondb.firebaseapp.com",
+            databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
+            projectId: "dinotondb",
+            storageBucket: "dinotondb.appspot.com",
+            messagingSenderId: "237534628642",
+            appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
+            measurementId: "G-5JLMQ8WQYP"
+        };
+
+        // Инициализация Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | DinoTon</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
+</head>
   <body>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=600 height=960 tabindex="-1"></canvas>
