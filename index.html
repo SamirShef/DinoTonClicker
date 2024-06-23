@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | DinoTon</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
+
+    <script>
+        function loadFirebase(callback) {
+            var firebaseAppScript = document.createElement('script');
+            firebaseAppScript.src = 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+            firebaseAppScript.onload = function () {
+                var firebaseDatabaseScript = document.createElement('script');
+                firebaseDatabaseScript.src = 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
+                firebaseDatabaseScript.onload = function () {
+                    callback(); // Вызов callback-функции после загрузки скриптов
+                };
+                document.head.appendChild(firebaseDatabaseScript);
+            };
+            document.head.appendChild(firebaseAppScript);
+        }
+
+        loadFirebase(function () {
+            var firebaseConfig = {
+                apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
+                authDomain: "dinotondb.firebaseapp.com",
+                databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
+                projectId: "dinotondb",
+                storageBucket: "dinotondb.appspot.com",
+                messagingSenderId: "237534628642",
+                appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
+                measurementId: "G-5JLMQ8WQYP"
+            };
+            // Инициализация Firebase
+            firebase.initializeApp(firebaseConfig);
+        });
+    </script>
+</head>
   <body>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=600 height=960 tabindex="-1"></canvas>
@@ -142,25 +173,6 @@
 
       document.body.appendChild(script);
 
-    </script>
-
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
-
-    <script>
-        window.addEventListener('load', function () {
-          var firebaseConfig = {
-              apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
-          authDomain: "dinotondb.firebaseapp.com",
-          databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
-          projectId: "dinotondb",
-          storageBucket: "dinotondb.appspot.com",
-          messagingSenderId: "237534628642",
-          appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
-          measurementId: "G-5JLMQ8WQYP"
-        };
-            firebase.initializeApp(firebaseConfig);
-        });
     </script>
   </body>
 </html>
