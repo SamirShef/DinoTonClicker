@@ -7222,7 +7222,7 @@ var ASM_CONSTS = {
           Module["WebGPU"].device = wgpu[device];
       }
 
-  //import { firebase } from 'main.js'; // Путь к файлу main.js
+  import { firebase } from 'main.js'; // Путь к файлу main.js
 
 function _SetData(path, value) {
   var strPath = UTF8ToString(path);
