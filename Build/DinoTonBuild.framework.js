@@ -7224,15 +7224,17 @@ var ASM_CONSTS = {
 
 
 function _SetData(path, value) {
-  var strPath = UTF8ToString(path);
-  var strValue = UTF8ToString(value);
-  firebase.database().ref(strPath).set(strValue)
-    .then(function() {
-      console.log('Data set successfully');
-    })
-    .catch(function(error) {
-      console.error('Error setting data:', error);
-    });
+  document.addEventListener('DOMContentLoaded', (event) => {
+    var strPath = UTF8ToString(path);
+    var strValue = UTF8ToString(value);
+    firebase.database().ref(strPath).set(strValue)
+      .then(function() {
+        console.log('Data set successfully');
+      })
+      .catch(function(error) {
+        console.error('Error setting data:', error);
+      });
+  });
 }
 
   function ___assert_fail(condition, filename, line, func) {
