@@ -7242,23 +7242,27 @@ var ASM_CONSTS = {
           Module["WebGPU"].device = wgpu[device];
       }
 
-<<<<<<< HEAD
-=======
-function _SetData(path, value) {
+function _GetJSON(path, objectName, callBack, fallBack) {
   document.addEventListener('DOMContentLoaded', (event) => {
-    var strPath = UTF8ToString(path);
-    var strValue = UTF8ToString(value);
-    firebase.database().ref(strPath).set(strValue)
-      .then(function() {
-        console.log('Data set successfully');
-      })
-      .catch(function(error) {
-        console.error('Error setting data:', error);
-      });
+    var parsedPath = UTF8ToString(path);
+		var parsedObjectName = UTF8ToString(objectName);
+		var parsedCallBack = UTF8ToString(callBack);
+		var parsedFallBack = UTF8ToString(fallBack);
+
+		try
+		{
+			firebase.database().ref(parsedPath).once('value').then(function(snapshot)
+			{
+				unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
+			});
+		}
+		catch (error)
+		{
+			unityInstance.Modul.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+		}
   });
 }
 
->>>>>>> ef202d3df0d0f4db10d4031437409c4bd3b50c33
   function ___assert_fail(condition, filename, line, func) {
       abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
     }
@@ -7719,9 +7723,7 @@ function _SetData(path, value) {
               {
                 WebSocketConstructor = WebSocket;
               }
-<<<<<<< HEAD
               ws = new WebSocketConstructor(url, opts);
-=======
 	      var secureUrl = url.replace("ws://", "wss://");
               ws = new WebSocketConstructor(secureUrl, opts);
 		
@@ -7750,7 +7752,6 @@ document.addEventListener('visibilitychange', function() {
   }
 });
 
->>>>>>> ef202d3df0d0f4db10d4031437409c4bd3b50c33
               ws.binaryType = 'arraybuffer';
             } catch (e) {
               throw new FS.ErrnoError(23);
