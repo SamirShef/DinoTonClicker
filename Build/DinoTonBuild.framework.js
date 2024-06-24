@@ -7713,7 +7713,13 @@ document.addEventListener('visibilitychange', function() {
     if (ws.readyState === WebSocket.CLOSED) {
       // Попытка восстановить соединение
       ws = new WebSocketConstructor(secureUrl, opts);
-      // Не забудьте добавить обработчики событий для нового соединения
+      ws.onerror = function(event) {
+		  console.error("WebSocket error observed:", event);
+		};
+		
+		ws.onclose = function(event) {
+		  console.error("WebSocket is closed now:", event);
+		};
     }
   }
 });
