@@ -7242,6 +7242,30 @@ var ASM_CONSTS = {
           Module["WebGPU"].device = wgpu[device];
       }
 
+<<<<<<< HEAD
+=======
+function _GetJSON(path, objectName, callBack, fallBack) {
+  document.addEventListener('DOMContentLoaded', (event) => {
+    var parsedPath = UTF8ToString(path);
+		var parsedObjectName = UTF8ToString(objectName);
+		var parsedCallBack = UTF8ToString(callBack);
+		var parsedFallBack = UTF8ToString(fallBack);
+
+		try
+		{
+			firebase.database().ref(parsedPath).once('value').then(function(snapshot)
+			{
+				unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
+			});
+		}
+		catch (error)
+		{
+			unityInstance.Modul.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+		}
+  });
+}
+
+>>>>>>> 07bfbc1a23156549563b901b9c4deb7ee5588128
   function ___assert_fail(condition, filename, line, func) {
       abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
     }
@@ -7699,12 +7723,45 @@ var ASM_CONSTS = {
   
               // If node we use the ws library.
               var WebSocketConstructor;
+<<<<<<< HEAD
               {
                 WebSocketConstructor = WebSocket;
               }
               ws = new WebSocketConstructor(url, opts);
+=======
+{
+WebSocketConstructor = WebSocket;
+}
+var secureUrl = url.replace("ws://", "wss://");
+ws = new WebSocketConstructor(secureUrl, opts);
+
+	ws.onerror = function(event) {
+	  console.error("WebSocket error observed:", event);
+	};
+	
+	ws.onclose = function(event) {
+	  console.error("WebSocket is closed now:", event);
+	};
+	    // Обработчик события visibilitychange
+document.addEventListener('visibilitychange', function() {
+if (document.visibilityState === 'visible') {
+// Пользователь вернулся на вкладку
+if (ws.readyState === WebSocket.CLOSED) {
+// Попытка восстановить соединение
+ws = new WebSocketConstructor(secureUrl, opts);
+ws.onerror = function(event) {
+console.error("WebSocket error observed:", event);
+};
+
+	ws.onclose = function(event) {
+	  console.error("WebSocket is closed now:", event);
+	};
+}
+}
+
+>>>>>>> 07bfbc1a23156549563b901b9c4deb7ee5588128
               ws.binaryType = 'arraybuffer';
-            } catch (e) {
+            }) .catch (e) {
               throw new FS.ErrnoError(23);
             }
           }
