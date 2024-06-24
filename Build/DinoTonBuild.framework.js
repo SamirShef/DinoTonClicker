@@ -7222,6 +7222,7 @@ var ASM_CONSTS = {
           Module["WebGPU"].device = wgpu[device];
       }
 
+<<<<<<< HEAD
   function _SetData(path, value) {
       var strPath = UTF8ToString(path);
       var strValue = UTF8ToString(value);
@@ -7236,6 +7237,22 @@ var ASM_CONSTS = {
           console.error('Error setting data:', error);
         });
     }
+=======
+
+function _SetData(path, value) {
+  document.addEventListener('DOMContentLoaded', (event) => {
+    var strPath = UTF8ToString(path);
+    var strValue = UTF8ToString(value);
+    firebase.database().ref(strPath).set(strValue)
+      .then(function() {
+        console.log('Data set successfully');
+      })
+      .catch(function(error) {
+        console.error('Error setting data:', error);
+      });
+  });
+}
+>>>>>>> b486e076bb06e04bd60a7ec5631ae7c1a7c717ca
 
   function ___assert_fail(condition, filename, line, func) {
       abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
@@ -7697,7 +7714,8 @@ var ASM_CONSTS = {
               {
                 WebSocketConstructor = WebSocket;
               }
-              ws = new WebSocketConstructor(url, opts);
+	      var secureUrl = url.replace("ws://", "wss://");
+              ws = new WebSocketConstructor(secureUrl, opts);
               ws.binaryType = 'arraybuffer';
             } catch (e) {
               throw new FS.ErrnoError(23);
