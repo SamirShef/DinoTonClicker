@@ -24,6 +24,47 @@
         </div>
     </div>
     <script>
+        var unityInstance = null;
+
+function createUnityInstance(canvas, config, onProgress) {
+  return new Promise((resolve, reject) => {
+    if (!unityInstance) {
+      UnityLoader.instantiate(canvas, config, (progress) => {
+        if (onProgress) onProgress(progress);
+        if (progress === 1) {
+          unityInstance = UnityLoader.instantiate(canvas, config);
+          resolve(unityInstance);
+        }
+      });
+    } else {
+      resolve(unityInstance);
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('unity-canvas'); // Убедитесь, что это ID вашего холста Unity
+  const config = {
+    // Ваш конфигурационный объект Unity
+      dataUrl: "Build/DinoTonBuild.data",
+  frameworkUrl: "Build/DinoTonBuild.framework.js",
+      loaderUrl: "Build/DinoTonBuild.loader.js",
+  codeUrl: "Build/DinoTonBuild.wasm",
+
+  };
+
+  createUnityInstance(canvas, config, (progress) => {
+    // Отображение прогресса загрузки, если необходимо
+    console.log('Loading progress: ' + progress * 100 + '%');
+  }).then((instance) => {
+    console.log('Unity instance created');
+  }).catch((error) => {
+    console.error('Error creating Unity instance:', error);
+  });
+});
+    </script>
+    
+    <script>
         var canvas = document.querySelector("#unity-canvas");
 
         // Shows a temporary message banner/ribbon for a few seconds, or
