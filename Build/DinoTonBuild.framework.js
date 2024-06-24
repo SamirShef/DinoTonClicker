@@ -1500,6 +1500,11 @@ var ASM_CONSTS = {
   var parsedObjectName = UTF8ToString(objectName);
   var parsedCallBack = UTF8ToString(callBack);
   var parsedFallBack = UTF8ToString(fallBack);
+	  createUnityInstance(canvas, config, (progress) => {
+  progressBarFull.style.width = 100 * progress + "%";
+}).then((unityInstance) => {
+ 
+  window.unityInstance = unityInstance; // <-- this
 
   if (!unityInstance || !unityInstance.Module) {
     console.error('Unity instance is not ready or not defined.');
@@ -1508,10 +1513,10 @@ var ASM_CONSTS = {
 
   try {
     firebase.database().ref(parsedPath).once('value').then(function(snapshot) {
-      unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
+      window.unityInstance.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
     });
   } catch (error) {
-    unityInstance.Module.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+    window.unityInstance.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
   }
 }
 
