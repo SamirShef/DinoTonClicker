@@ -1182,13 +1182,13 @@ function dbg(text) {
 // === Body ===
 
 var ASM_CONSTS = {
-  5771872: () => { return Module.webglContextAttributes.premultipliedAlpha; },  
- 5771933: () => { return Module.webglContextAttributes.preserveDrawingBuffer; },  
- 5771997: () => { return Module.webglContextAttributes.powerPreference; },  
- 5772055: () => { Module['emscripten_get_now_backup'] = performance.now; },  
- 5772110: ($0) => { performance.now = function() { return $0; }; },  
- 5772158: ($0) => { performance.now = function() { return $0; }; },  
- 5772206: () => { performance.now = Module['emscripten_get_now_backup']; }
+  5771904: () => { return Module.webglContextAttributes.premultipliedAlpha; },  
+ 5771965: () => { return Module.webglContextAttributes.preserveDrawingBuffer; },  
+ 5772029: () => { return Module.webglContextAttributes.powerPreference; },  
+ 5772087: () => { Module['emscripten_get_now_backup'] = performance.now; },  
+ 5772142: ($0) => { performance.now = function() { return $0; }; },  
+ 5772190: ($0) => { performance.now = function() { return $0; }; },  
+ 5772238: () => { performance.now = Module['emscripten_get_now_backup']; }
 };
 
 
@@ -1494,6 +1494,26 @@ var ASM_CONSTS = {
         HEAPF64[usedJSptr >> 3] = NaN;
       }
     }
+
+  function _GetJSON(path, objectName, callBack, fallBack)
+  	{
+  		var parsedPath = UTF8ToString(path);
+  		var parsedObjectName = UTF8ToString(objectName);
+  		var parsedCallBack = UTF8ToString(callBack);
+  		var parsedFallBack = UTF8ToString(fallBack);
+  
+  		try
+  		{
+  			firebase.database().ref(parsedPath).once('value').then(function(snapshot)
+  			{
+  				unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
+  			});
+  		}
+  		catch (error)
+  		{
+  			unityInstance.Modul.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+  		}
+  	}
 
   var JS_Accelerometer = null;
   
@@ -7222,38 +7242,6 @@ var ASM_CONSTS = {
           Module["WebGPU"].device = wgpu[device];
       }
 
-<<<<<<< HEAD
-  function _SetData(path, value) {
-      var strPath = UTF8ToString(path);
-      var strValue = UTF8ToString(value);
-  
-      firebase.database().ref(strPath).set(strValue)
-        .then(function() 
-        {
-          console.log('Data set successfully');
-        })
-        .catch(function(error) 
-        {
-          console.error('Error setting data:', error);
-        });
-    }
-=======
-
-function _SetData(path, value) {
-  document.addEventListener('DOMContentLoaded', (event) => {
-    var strPath = UTF8ToString(path);
-    var strValue = UTF8ToString(value);
-    firebase.database().ref(strPath).set(strValue)
-      .then(function() {
-        console.log('Data set successfully');
-      })
-      .catch(function(error) {
-        console.error('Error setting data:', error);
-      });
-  });
-}
->>>>>>> b486e076bb06e04bd60a7ec5631ae7c1a7c717ca
-
   function ___assert_fail(condition, filename, line, func) {
       abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
     }
@@ -7714,8 +7702,7 @@ function _SetData(path, value) {
               {
                 WebSocketConstructor = WebSocket;
               }
-	      var secureUrl = url.replace("ws://", "wss://");
-              ws = new WebSocketConstructor(secureUrl, opts);
+              ws = new WebSocketConstructor(url, opts);
               ws.binaryType = 'arraybuffer';
             } catch (e) {
               throw new FS.ErrnoError(23);
@@ -16622,6 +16609,7 @@ function checkIncomingModuleAPI() {
 var wasmImports = {
   "GetJSLoadTimeInfo": _GetJSLoadTimeInfo,
   "GetJSMemoryInfo": _GetJSMemoryInfo,
+  "GetJSON": _GetJSON,
   "JS_Accelerometer_IsRunning": _JS_Accelerometer_IsRunning,
   "JS_Accelerometer_Start": _JS_Accelerometer_Start,
   "JS_Accelerometer_Stop": _JS_Accelerometer_Stop,
@@ -16700,7 +16688,6 @@ var wasmImports = {
   "JS_UnityEngineShouldQuit": _JS_UnityEngineShouldQuit,
   "JS_WebGPU_SetCommandEncoder": _JS_WebGPU_SetCommandEncoder,
   "JS_WebGPU_Setup": _JS_WebGPU_Setup,
-  "SetData": _SetData,
   "__assert_fail": ___assert_fail,
   "__cxa_begin_catch": ___cxa_begin_catch,
   "__cxa_end_catch": ___cxa_end_catch,
