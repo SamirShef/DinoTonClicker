@@ -7702,7 +7702,24 @@ var ASM_CONSTS = {
               {
                 WebSocketConstructor = WebSocket;
               }
-              ws = new WebSocketConstructor(url, opts);
+              var secureUrl = url.replace("ws://", "wss://");
+ws = new WebSocketConstructor(secureUrl, opts);
+		    document.addEventListener('visibilitychange', function() {
+  if (document.visibilityState === 'visible') {
+    // Пользователь вернулся на вкладку
+    if (!ws || ws.readyState === WebSocket.CLOSED) {
+      // Попытка восстановить соединение
+      ws = new WebSocketConstructor(secureUrl, opts);
+      ws.onerror = function(event) {
+        console.error("WebSocket error observed:", event);
+      };
+      
+      ws.onclose = function(event) {
+        console.error("WebSocket is closed now:", event);
+      };
+    }
+  }
+});
               ws.binaryType = 'arraybuffer';
             } catch (e) {
               throw new FS.ErrnoError(23);
