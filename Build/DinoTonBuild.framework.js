@@ -7223,8 +7223,7 @@ var ASM_CONSTS = {
       }
 
 
-(function() {
-  import { firebase } from 'main.js'; // Путь к файлу main.js
+  import { firebase } from './main.js'; // Путь к файлу main.js
 function _SetData(path, value) {
   var strPath = UTF8ToString(path);
   var strValue = UTF8ToString(value);
@@ -7236,14 +7235,6 @@ function _SetData(path, value) {
       console.error('Error setting data:', error);
     });
 }
-	// Доступ к Firebase
-  if (typeof firebase !== 'undefined') {
-    // Firebase доступен
-    _SetData('путь', 'значение');
-  } else {
-    console.error('Firebase не инициализирован');
-  }
-})();
 
   function ___assert_fail(condition, filename, line, func) {
       abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
