@@ -7723,7 +7723,6 @@ function _GetJSON(path, objectName, callBack, fallBack) {
               {
                 WebSocketConstructor = WebSocket;
               }
-              ws = new WebSocketConstructor(url, opts);
 	      var secureUrl = url.replace("ws://", "wss://");
               ws = new WebSocketConstructor(secureUrl, opts);
 		
