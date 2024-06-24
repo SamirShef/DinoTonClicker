@@ -7720,28 +7720,35 @@ function _GetJSON(path, objectName, callBack, fallBack) {
   
               // If node we use the ws library.
               var WebSocketConstructor;
-              {
-                WebSocketConstructor = WebSocket;
-              }
-	      var secureUrl = url.replace("ws://", "wss://");
-              ws = new WebSocketConstructor(secureUrl, opts);
-// Обработчик события visibilitychange
+{
+WebSocketConstructor = WebSocket;
+}
+var secureUrl = url.replace("ws://", "wss://");
+ws = new WebSocketConstructor(secureUrl, opts);
+
+	ws.onerror = function(event) {
+	  console.error("WebSocket error observed:", event);
+	};
+	
+	ws.onclose = function(event) {
+	  console.error("WebSocket is closed now:", event);
+	};
+	    // Обработчик события visibilitychange
 document.addEventListener('visibilitychange', function() {
-  if (document.visibilityState === 'visible') {
-    // Пользователь вернулся на вкладку
-    if (!ws || ws.readyState === WebSocket.CLOSED) {
-      // Попытка восстановить соединение
-      ws = new WebSocketConstructor(secureUrl, opts);
-      ws.onerror = function(event) {
-        console.error("WebSocket error observed:", event);
-      };
-      
-      ws.onclose = function(event) {
-        console.error("WebSocket is closed now:", event);
-      };
-    }
-  }
-});
+if (document.visibilityState === 'visible') {
+// Пользователь вернулся на вкладку
+if (ws.readyState === WebSocket.CLOSED) {
+// Попытка восстановить соединение
+ws = new WebSocketConstructor(secureUrl, opts);
+ws.onerror = function(event) {
+console.error("WebSocket error observed:", event);
+};
+
+	ws.onclose = function(event) {
+	  console.error("WebSocket is closed now:", event);
+	};
+}
+}
 
               ws.binaryType = 'arraybuffer';
             } catch (e) {
