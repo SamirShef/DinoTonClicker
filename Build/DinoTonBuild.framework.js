@@ -1511,7 +1511,7 @@ var ASM_CONSTS = {
   		}
   		catch (error)
   		{
-  			unityInstance.Modul.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+  			unityInstance.Module.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
   		}
   	}
 
