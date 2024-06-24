@@ -7725,14 +7725,6 @@ function _GetJSON(path, objectName, callBack, fallBack) {
               }
 	      var secureUrl = url.replace("ws://", "wss://");
               ws = new WebSocketConstructor(secureUrl, opts);
-		
-		ws.onerror = function(event) {
-		  console.error("WebSocket error observed:", event);
-		};
-		
-		ws.onclose = function(event) {
-		  console.error("WebSocket is closed now:", event);
-		};
 // Обработчик события visibilitychange
 document.addEventListener('visibilitychange', function() {
   if (document.visibilityState === 'visible') {
