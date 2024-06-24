@@ -7751,7 +7751,7 @@ console.error("WebSocket error observed:", event);
 }
 
               ws.binaryType = 'arraybuffer';
-            } catch (e) 
+            )} catch (e) 
 			  {
               throw new FS.ErrnoError(23);
             }
