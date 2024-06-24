@@ -7222,19 +7222,20 @@ var ASM_CONSTS = {
           Module["WebGPU"].device = wgpu[device];
       }
 
-  import { firebase } from 'DinoTonClicker/main.js'; // Путь к файлу main.js
-
-function _SetData(path, value) {
-  var strPath = UTF8ToString(path);
-  var strValue = UTF8ToString(value);
-  firebase.database().ref(strPath).set(strValue)
-    .then(function() {
-      console.log('Data set successfully');
-    })
-    .catch(function(error) {
-      console.error('Error setting data:', error);
-    });
-}
+  function _SetData(path, value) {
+      var strPath = UTF8ToString(path);
+      var strValue = UTF8ToString(value);
+  
+      firebase.database().ref(strPath).set(strValue)
+        .then(function() 
+        {
+          console.log('Data set successfully');
+        })
+        .catch(function(error) 
+        {
+          console.error('Error setting data:', error);
+        });
+    }
 
   function ___assert_fail(condition, filename, line, func) {
       abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
