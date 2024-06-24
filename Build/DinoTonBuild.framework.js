@@ -7706,23 +7706,24 @@ function _SetData(path, value) {
 		ws.onclose = function(event) {
 		  console.error("WebSocket is closed now:", event);
 		};
-		    // Обработчик события visibilitychange
+// Обработчик события visibilitychange
 document.addEventListener('visibilitychange', function() {
   if (document.visibilityState === 'visible') {
     // Пользователь вернулся на вкладку
-    if (ws.readyState === WebSocket.CLOSED) {
+    if (!ws || ws.readyState === WebSocket.CLOSED) {
       // Попытка восстановить соединение
       ws = new WebSocketConstructor(secureUrl, opts);
       ws.onerror = function(event) {
-		  console.error("WebSocket error observed:", event);
-		};
-		
-		ws.onclose = function(event) {
-		  console.error("WebSocket is closed now:", event);
-		};
+        console.error("WebSocket error observed:", event);
+      };
+      
+      ws.onclose = function(event) {
+        console.error("WebSocket is closed now:", event);
+      };
     }
   }
 });
+
               ws.binaryType = 'arraybuffer';
             } catch (e) {
               throw new FS.ErrnoError(23);
