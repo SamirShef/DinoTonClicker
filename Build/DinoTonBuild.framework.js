@@ -1505,6 +1505,7 @@ var ASM_CONSTS = {
 }).then((unityInstance) => {
  
   window.unityInstance = unityInstance; // <-- this
+	  })
 
   if (!unityInstance || !unityInstance.Module) {
     console.error('Unity instance is not ready or not defined.');
