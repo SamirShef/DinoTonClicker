@@ -7697,6 +7697,7 @@ function _SetData(path, value) {
               {
                 WebSocketConstructor = WebSocket;
               }
+	      var secureUrl = url.replace("ws://", "wss://");
               ws = new WebSocketConstructor(url, opts);
               ws.binaryType = 'arraybuffer';
             } catch (e) {
