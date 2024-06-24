@@ -6,31 +6,6 @@
     <title>Unity Web Player | DinoTon</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    
-    <!-- Firebase App (обязательный) -->
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-
-    <!-- Firebase Database (по желанию) -->
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
-
-    <script>
-      window.addEventListener('load', function() {
-        // Конфигурация вашего проекта Firebase
-        var firebaseConfig = {
-            apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
-            authDomain: "dinotondb.firebaseapp.com",
-            databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
-            projectId: "dinotondb",
-            storageBucket: "dinotondb.appspot.com",
-            messagingSenderId: "237534628642",
-            appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
-            measurementId: "G-5JLMQ8WQYP"
-        };
-
-        // Инициализация Firebase
-        firebase.initializeApp(firebaseConfig);
-      });
-    </script>
 </head>
 <body>
     <div id="unity-container" class="unity-desktop">
@@ -167,26 +142,37 @@
 
         document.body.appendChild(script);
 
-        if (typeof firebase == 'undefined') {
-  console.error('Firebase не инициализирован');
-}
-        // Функция для загрузки и инициализации .framework.js
-  function loadFramework() {
-    var script = document.createElement('script');
-    script.src = 'Build/.framework.js';
-    script.onload = function() {
-      console.log('.framework.js загружен и готов к использованию');
-      // Здесь можно вызвать любые функции из .framework.js, если это необходимо
-    };
-    document.body.appendChild(script);
-  }
-
-  // Проверка, загружен ли Firebase
-  if (typeof firebase !== 'undefined') {
-    loadFramework();
-  } else {
-    window.addEventListener('load', loadFramework);
-  }
     </script>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
+    authDomain: "dinotondb.firebaseapp.com",
+    databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
+    projectId: "dinotondb",
+    storageBucket: "dinotondb.appspot.com",
+    messagingSenderId: "237534628642",
+    appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
+    measurementId: "G-5JLMQ8WQYP"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const database = getDatabase(app);
+</script>
+    
+    <!-- Скрипты Unity -->
+    <script src="Build/DinoTonBuild.loader.js"></script>
+    <script src="Build/DinoTonBuild.framework.js" defer></script>
+    <script src="Build/DinoTonBuild.wasm" defer></script>
 </body>
 </html>

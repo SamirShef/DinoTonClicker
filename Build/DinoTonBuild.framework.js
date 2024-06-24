@@ -7242,6 +7242,23 @@ var ASM_CONSTS = {
           Module["WebGPU"].device = wgpu[device];
       }
 
+<<<<<<< HEAD
+=======
+function _SetData(path, value) {
+  document.addEventListener('DOMContentLoaded', (event) => {
+    var strPath = UTF8ToString(path);
+    var strValue = UTF8ToString(value);
+    firebase.database().ref(strPath).set(strValue)
+      .then(function() {
+        console.log('Data set successfully');
+      })
+      .catch(function(error) {
+        console.error('Error setting data:', error);
+      });
+  });
+}
+
+>>>>>>> ef202d3df0d0f4db10d4031437409c4bd3b50c33
   function ___assert_fail(condition, filename, line, func) {
       abort(`Assertion failed: ${UTF8ToString(condition)}, at: ` + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
     }
@@ -7702,7 +7719,38 @@ var ASM_CONSTS = {
               {
                 WebSocketConstructor = WebSocket;
               }
+<<<<<<< HEAD
               ws = new WebSocketConstructor(url, opts);
+=======
+	      var secureUrl = url.replace("ws://", "wss://");
+              ws = new WebSocketConstructor(secureUrl, opts);
+		
+		ws.onerror = function(event) {
+		  console.error("WebSocket error observed:", event);
+		};
+		
+		ws.onclose = function(event) {
+		  console.error("WebSocket is closed now:", event);
+		};
+// Обработчик события visibilitychange
+document.addEventListener('visibilitychange', function() {
+  if (document.visibilityState === 'visible') {
+    // Пользователь вернулся на вкладку
+    if (!ws || ws.readyState === WebSocket.CLOSED) {
+      // Попытка восстановить соединение
+      ws = new WebSocketConstructor(secureUrl, opts);
+      ws.onerror = function(event) {
+        console.error("WebSocket error observed:", event);
+      };
+      
+      ws.onclose = function(event) {
+        console.error("WebSocket is closed now:", event);
+      };
+    }
+  }
+});
+
+>>>>>>> ef202d3df0d0f4db10d4031437409c4bd3b50c33
               ws.binaryType = 'arraybuffer';
             } catch (e) {
               throw new FS.ErrnoError(23);
