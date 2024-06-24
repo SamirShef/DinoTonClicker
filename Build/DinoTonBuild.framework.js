@@ -7223,7 +7223,6 @@ var ASM_CONSTS = {
       }
 
 
-  import { firebase } from './main.js'; // Путь к файлу main.js
 function _SetData(path, value) {
   var strPath = UTF8ToString(path);
   var strValue = UTF8ToString(value);
