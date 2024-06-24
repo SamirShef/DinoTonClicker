@@ -6,32 +6,6 @@
     <title>Unity Web Player | DinoTon</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-    import { getDatabase } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
-    authDomain: "dinotondb.firebaseapp.com",
-    databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
-    projectId: "dinotondb",
-    storageBucket: "dinotondb.appspot.com",
-    messagingSenderId: "237534628642",
-    appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
-    measurementId: "G-5JLMQ8WQYP"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const database = getDatabase(app);
-</script>
 </head>
 <body>
     <div id="unity-container" class="unity-desktop">
@@ -169,9 +143,36 @@
         document.body.appendChild(script);
 
     </script>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
+    authDomain: "dinotondb.firebaseapp.com",
+    databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
+    projectId: "dinotondb",
+    storageBucket: "dinotondb.appspot.com",
+    messagingSenderId: "237534628642",
+    appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
+    measurementId: "G-5JLMQ8WQYP"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const database = getDatabase(app);
+</script>
+    
+    <!-- Скрипты Unity -->
+    <script src="Build/DinoTonBuild.loader.js"></script>
+    <script src="Build/DinoTonBuild.framework.js" defer></script>
+    <script src="Build/DinoTonBuild.wasm" defer></script>
 </body>
-<!-- Скрипты Unity -->
-<script src="Build/DinoTonBuild.loader.js"></script>
-<script src="Build/DinoTonBuild.framework.js" defer></script>
-<script src="Build/DinoTonBuild.wasm" defer></script>
 </html>
