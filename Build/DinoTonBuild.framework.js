@@ -1495,25 +1495,25 @@ var ASM_CONSTS = {
       }
     }
 
-  function _GetJSON(path, objectName, callBack, fallBack)
-  	{
-  		var parsedPath = UTF8ToString(path);
-  		var parsedObjectName = UTF8ToString(objectName);
-  		var parsedCallBack = UTF8ToString(callBack);
-  		var parsedFallBack = UTF8ToString(fallBack);
-  
-  		try
-  		{
-  			firebase.database().ref(parsedPath).once('value').then(function(snapshot)
-  			{
-  				unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
-  			});
-  		}
-  		catch (error)
-  		{
-  			unityInstance.Module.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
-  		}
-  	}
+  function _GetJSON(path, objectName, callBack, fallBack) {
+  var parsedPath = UTF8ToString(path);
+  var parsedObjectName = UTF8ToString(objectName);
+  var parsedCallBack = UTF8ToString(callBack);
+  var parsedFallBack = UTF8ToString(fallBack);
+
+  if (!unityInstance || !unityInstance.Module) {
+    console.error('Unity instance is not ready or not defined.');
+    return;
+  }
+
+  try {
+    firebase.database().ref(parsedPath).once('value').then(function(snapshot) {
+      unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
+    });
+  } catch (error) {
+    unityInstance.Module.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+  }
+}
 
   var JS_Accelerometer = null;
   
