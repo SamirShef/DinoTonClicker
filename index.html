@@ -22,16 +22,12 @@
           </div>
       </div>
 
-    
-<script type="module">
-  // Импорт Firebase App
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-
-  // Импорт Firebase Database
-  import { getDatabase } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
+    <script src='https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js'></script>
+    <script src='https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js'></script>
+<script>
 
   // Your web app's Firebase configuration
-  const firebaseConfig = {
+  var firebaseConfig = {
       apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
       authDomain: "dinotondb.firebaseapp.com",
       databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
@@ -43,11 +39,7 @@
   };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const database = getDatabase(app);
+  firebase.initializeApp(firebaseConfig);
 </script>
-    <script src="Build/UnityLoader.js" defer></script>
-    <script src="Build/DinoTonBuild.framework.js" defer></script>
-    <script src="Build/DinoTonBuild.wasm.code.unityweb" defer></script>
   </body>
 </html>
