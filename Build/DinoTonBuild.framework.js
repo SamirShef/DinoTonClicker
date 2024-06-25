@@ -1504,7 +1504,7 @@ var ASM_CONSTS = {
   
   		try
   		{
-  			firebase.database().ref(parsedPath).once('value').then(function(snapshot)
+  			window.database().ref(parsedPath).once('value').then(function(snapshot)
   			{
   				unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
   			});
