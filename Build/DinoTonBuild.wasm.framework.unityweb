@@ -3190,7 +3190,7 @@ function _GetJSON(path, objectName, callBack, fallBack) {
    unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
   }));
  } catch (error) {
-  unityInstance.Modul.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+  unityInstance.Module.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
  }
 }
 function _JS_Cursor_SetImage(ptr, length) {
