@@ -22,12 +22,15 @@
           </div>
       </div>
 
-    <script src='https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js'></script>
-    <script src='https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js'></script>
-<script>
+ <script type="module">
+  // Импорт Firebase App
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+
+  // Импорт Firebase Database
+  import { getDatabase } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
 
   // Your web app's Firebase configuration
-  var firebaseConfig = {
+  const firebaseConfig = {
       apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
       authDomain: "dinotondb.firebaseapp.com",
       databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
@@ -39,7 +42,8 @@
   };
 
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
 </script>
   </body>
 </html>
