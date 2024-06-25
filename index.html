@@ -41,7 +41,6 @@
       measurementId: "G-5JLMQ8WQYP"
   };
 
-  document.addEventListener('DOMContentLoaded', (event) => {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
@@ -49,7 +48,14 @@
   // Make Firebase accessible globally
   window.app = app;
   window.database = database;
-});
 </script>
+    <script>
+    // Убедитесь, что этот скрипт находится после скрипта Firebase выше
+    function GetJSON(path, objectName, callBack, fallBack) {
+      // ... ваш код ...
+    }
+
+    // Другие функции, которые могут использовать Firebase
+  </script>
   </body>
 </html>
