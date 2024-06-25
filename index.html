@@ -22,27 +22,28 @@
           </div>
       </div>
 
-    <!-- Firebase App (обязательный) -->
-<script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script type="module">
+  // Импорт Firebase App
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 
-<!-- Firebase Database (по желанию) -->
-<script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
-      <script type="module">
+  // Импорт Firebase Database
+  import { getDatabase } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
 
-          // Your web app's Firebase configuration
-          var firebaseConfig = {
-              apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
-              authDomain: "dinotondb.firebaseapp.com",
-              databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
-              projectId: "dinotondb",
-              storageBucket: "dinotondb.appspot.com",
-              messagingSenderId: "237534628642",
-              appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
-              measurementId: "G-5JLMQ8WQYP"
-          };
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+      apiKey: "AIzaSyBrOsK-fLmNHgxb3bpy7BL-pfk1LyNQ_2g",
+      authDomain: "dinotondb.firebaseapp.com",
+      databaseURL: "https://dinotondb-default-rtdb.firebaseio.com",
+      projectId: "dinotondb",
+      storageBucket: "dinotondb.appspot.com",
+      messagingSenderId: "237534628642",
+      appId: "1:237534628642:web:2e817fb3d1a59e0fe1f37b",
+      measurementId: "G-5JLMQ8WQYP"
+  };
 
-          // Initialize Firebase
-          firebase.initializeApp(firebaseConfig);
-      </script>
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+</script>
   </body>
 </html>
