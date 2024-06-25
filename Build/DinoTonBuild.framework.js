@@ -1502,17 +1502,13 @@ var ASM_CONSTS = {
   		var parsedCallBack = UTF8ToString(callBack);
   		var parsedFallBack = UTF8ToString(fallBack);
   
-  		try
-  		{
-  			window.database.ref(parsedPath).once('value').then(function(snapshot)
-  			{
-  				unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
-  			});
-  		}
-  		catch (error)
-  		{
-  			unityInstance.Modul.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
-  		}
+  		try {
+		  window.database.ref(parsedPath).once('value').then(function(snapshot) {
+		    unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
+		  });
+		} catch (error) {
+		  unityInstance.Module.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+		}
   	}
 
   var JS_Accelerometer = null;
