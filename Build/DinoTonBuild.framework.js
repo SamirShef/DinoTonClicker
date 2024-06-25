@@ -1501,14 +1501,19 @@ var ASM_CONSTS = {
   		var parsedObjectName = UTF8ToString(objectName);
   		var parsedCallBack = UTF8ToString(callBack);
   		var parsedFallBack = UTF8ToString(fallBack);
-  
+
+			console.log("GetJSON called with:", parsedPath, parsedObjectName, parsedCallBack, parsedFallBack);
+			
   		try {
-		  window.database.ref(parsedPath).once('value').then(function(snapshot) {
-		    unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
-		  });
-		} catch (error) {
-		  unityInstance.Module.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
-		}
+			  firebase.database().ref(parsedPath).once('value').then(function(snapshot) {
+				  console.log("Firebase data:", snapshot.val());
+			    unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
+			  });
+			} 
+			catch (error) {
+				console.error("Error in GetJSON:", error);
+			  unityInstance.Module.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+			}
   	}
 
   var JS_Accelerometer = null;
