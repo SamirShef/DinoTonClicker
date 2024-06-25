@@ -44,6 +44,10 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
+
+   // Make Firebase accessible globally
+window.app = app;
+window.database = database;
 </script>
   </body>
 </html>
