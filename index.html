@@ -11,19 +11,6 @@
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/DinoTonBuild.json", {onProgress: UnityProgress});
     </script>
-    
-    <script>
-      function displayScreenSize() {
-        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        
-        console.log("Ширина экрана: " + width + "px");
-        console.log("Высота экрана: " + height + "px");
-      }
-    
-      // Вызов функции при загрузке страницы
-      window.onload = displayScreenSize;
-    </script>
   </head>
   <body>
       <div class="webgl-content">
@@ -35,8 +22,15 @@
           </div>
       </div>
 
-
     <script>
+      function displayScreenSize() {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        
+        console.log("Ширина экрана: " + width + "px");
+        console.log("Высота экрана: " + height + "px");
+      }
+
       var canvas = document.querySelector("#unityContainer");
       
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -59,6 +53,9 @@
         canvas.style.width = width + "px";
         canvas.style.height = height + "px";
       }
+    
+      // Вызов функции при загрузке страницы
+      window.onload = displayScreenSize;
     </script>
 
   <script src='https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js'></script>
