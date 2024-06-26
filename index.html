@@ -50,6 +50,10 @@
       </div>
 
     <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        resizeGame();
+      });
+      
       function resizeGame() {
         var unityContainer = document.getElementById('unityContainer');
         unityContainer.style.width = window.innerWidth + 'px';
@@ -57,7 +61,6 @@
       }
   
       window.addEventListener('resize', resizeGame);
-      window.addEventListener('load', resizeGame);
     </script>
 
   <script src='https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js'></script>
