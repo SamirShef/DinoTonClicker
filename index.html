@@ -23,13 +23,11 @@
       </div>
 
     <script>
-      function displayScreenSize() {
-        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+      var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         
-        console.log("Ширина экрана: " + width + "px");
-        console.log("Высота экрана: " + height + "px");
-      }
+      console.log("Ширина экрана: " + width + "px");
+      console.log("Высота экрана: " + height + "px");
 
       var canvas = document.querySelector("#unityContainer");
       
