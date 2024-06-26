@@ -1,7 +1,7 @@
 {
-"companyName": "DefaultCompany",
-"productName": "DinoTon2",
-"productVersion": "0.1",
+"companyName": "ShefGames",
+"productName": "DinoTon",
+"productVersion": "1.0",
 "dataUrl": "DinoTonBuild.data.unityweb",
 "wasmCodeUrl": "DinoTonBuild.wasm.code.unityweb",
 "wasmFrameworkUrl": "DinoTonBuild.wasm.framework.unityweb",
@@ -10,7 +10,7 @@
 "splashScreenStyle": "Dark",
 "backgroundColor": "#231F20",
 "cacheControl": {"default": "must-revalidate"},
-"developmentBuild": true,
+"developmentBuild": false,
 "multithreading": false,
 "unityVersion": "2019.4.31f1"
 }
