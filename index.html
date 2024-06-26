@@ -14,8 +14,7 @@
   </head>
   <body>
       <div class="webgl-content">
-          <div id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width=600 height=960 tabindex="-1"></canvas>
+          <canvas id="unityContainer" style="width: 600px; height: 960px"></canvas>
           <div class="footer">
             <div class="webgl-logo"></div>
             <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
@@ -32,7 +31,7 @@
         console.log("Ширина экрана: " + width + "px");
         console.log("Высота экрана: " + height + "px");
   
-        var canvas = document.querySelector("#unity-canvas");
+        var canvas = document.querySelector("#unityContainer");
         
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
