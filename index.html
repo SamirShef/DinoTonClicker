@@ -13,21 +13,21 @@
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/DinoTonBuild.json", {onProgress: UnityProgress});
     </script>
     <style>
-      /* Добавленные стили для адаптивного масштабирования */
       .webgl-content {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       #unityContainer {
         width: 100%;
         height: 100%;
-        position: fixed;
       }
-  </style>
+    </style>
   </head>
   <body>
       <div class="webgl-content">
