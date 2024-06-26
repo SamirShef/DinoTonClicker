@@ -23,33 +23,36 @@
       </div>
 
     <script>
-      var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      function displayScreenSize()
+      {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+          
+        console.log("Ширина экрана: " + width + "px");
+        console.log("Высота экрана: " + height + "px");
+  
+        var canvas = document.querySelector("#unityContainer");
         
-      console.log("Ширина экрана: " + width + "px");
-      console.log("Высота экрана: " + height + "px");
-
-      var canvas = document.querySelector("#unityContainer");
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
       
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      // Mobile device style: fill the whole browser client area with the game canvas:
-    
-      var meta = document.createElement('meta');
-      meta.name = 'viewport';
-      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-      document.getElementsByTagName('head')[0].appendChild(meta);
-      document.querySelector("#unity-container").className = "unity-mobile";
-      canvas.className = "unity-mobile";
-    
-      // To lower canvas resolution on mobile devices to gain some
-      // performance, uncomment the following line:
-      // config.devicePixelRatio = 1;
-    
-    
-      } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = width + "px";
-        canvas.style.height = height + "px";
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        document.querySelector("#unity-container").className = "unity-mobile";
+        canvas.className = "unity-mobile";
+      
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+      
+      
+        } else {
+          // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+          canvas.style.width = width + "px";
+          canvas.style.height = height + "px";
+        }
       }
     
       // Вызов функции при загрузке страницы
