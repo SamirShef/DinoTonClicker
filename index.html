@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
     <title>Unity WebGL Player | DinoTon</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
@@ -12,16 +12,42 @@
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/DinoTonBuild.json", {onProgress: UnityProgress});
     </script>
+    <style>
+      /* Добавленные стили для адаптивного масштабирования */
+      .webgl-content {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      #unityContainer {
+        width: 100%;
+        height: 100%;
+      }
+  </style>
   </head>
   <body>
       <div class="webgl-content">
-          <div id="unityContainer" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0"></div>
+          <div id="unityContainer"></div>
           <div class="footer">
             <div class="webgl-logo"></div>
             <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
             <div class="title">DinoTon</div>
           </div>
       </div>
+
+    <script>
+      function resizeGame() {
+        var unityContainer = document.getElementById('unityContainer');
+        unityContainer.style.width = window.innerWidth + 'px';
+        unityContainer.style.height = window.innerHeight + 'px';
+      }
+  
+      window.addEventListener('resize', resizeGame);
+      window.addEventListener('load', resizeGame);
+    </script>
 
   <script src='https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js'></script>
   <script src='https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js'></script>
