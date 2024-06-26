@@ -50,17 +50,17 @@
       </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        resizeGame();
-      });
-      
-      function resizeGame() {
-        var unityContainer = document.getElementById('unityContainer');
-        unityContainer.style.width = window.innerWidth + 'px';
-        unityContainer.style.height = window.innerHeight + 'px';
-      }
+      (function() {
+        function resizeGame() {
+          var unityContainer = document.getElementById('unityContainer');
+          unityContainer.style.width = window.innerWidth + 'px';
+          unityContainer.style.height = window.innerHeight + 'px';
+        }
   
-      window.addEventListener('resize', resizeGame);
+        resizeGame();
+  
+        window.addEventListener('resize', resizeGame);
+      })();
     </script>
 
   <script src='https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js'></script>
