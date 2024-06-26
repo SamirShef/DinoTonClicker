@@ -11,23 +11,14 @@
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/DinoTonBuild.json", {onProgress: UnityProgress});
     </script>
-  </head>
-  <body>
-      <div class="webgl-content">
-          <div id="unityContainer" style="width: 600px; height: 960px"></div>
-          <div class="footer">
-            <div class="webgl-logo"></div>
-            <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-            <div class="title">DinoTon</div>
-          </div>
-      </div>
-
-    <script>
-      // Функция для вывода размеров экрана
-      function displayScreenSize() {
-        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     
+    <script>
+      const width;
+      const height;
+      function displayScreenSize() {
+        width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        
         console.log("Ширина экрана: " + width + "px");
         console.log("Высота экрана: " + height + "px");
       }
@@ -35,6 +26,17 @@
       // Вызов функции при загрузке страницы
       window.onload = displayScreenSize;
     </script>
+  </head>
+  <body>
+      <div class="webgl-content">
+          <div id="unityContainer" style="width: width; height: height"></div>
+          <div class="footer">
+            <div class="webgl-logo"></div>
+            <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+            <div class="title">DinoTon</div>
+          </div>
+      </div>
+
 
     <script>
       var canvas = document.querySelector("#unityContainer");
