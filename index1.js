@@ -23,7 +23,7 @@ bot.on("callback_query", function (query) {
             url: gameurl
         });
     }
-    console.log("URL sent to player:", gameurl);
+    console.error("URL sent to player:", gameurl);
 });
 bot.on("inline_query", function (iq) {
     bot.answerInlineQuery(iq.id, [{
