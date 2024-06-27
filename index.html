@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <script>
-      // Переопределение стандартного метода alert
-      window.alert = function (message) {
-        // Проверка содержимого сообщения
-        if (message.includes('Unity WebGL is not currently supported on mobiles')) {
-          console.log('Предупреждение о поддержке Unity WebGL на мобильных устройствах скрыто.');
-          // Не показываем предупреждение, если оно связано с Unity WebGL на мобильных устройствах
-          return;
-        }
-        // Для всех остальных случаев используем стандартное поведение alert
-        window.originalAlert(message);
-      };
-    
-      // Сохранение оригинального метода alert
-      window.originalAlert = window.alert;
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
