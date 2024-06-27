@@ -17,13 +17,13 @@ bot.on("callback_query", function (query) {
         bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
     } else {
         queries[query.id] = query;
-        let gameurl = `https://samirshef.github.io/DinoTonClicker/?telegram_id=${query.from.id}`;
+        let telegramIdParam = encodeURIComponent(`telegram_id=${query.from.id}`);
+        let gameurl = `https://samirshef.github.io/DinoTonClicker/?${telegramIdParam}`;
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl
         });
     }
-    console.error("URL sent to player:", gameurl);
 });
 bot.on("inline_query", function (iq) {
     bot.answerInlineQuery(iq.id, [{
