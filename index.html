@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <script>
-  // Перехват событий beforeunload и unload
-  window.addEventListener('beforeunload', function(event) {
-    // Переопределение стандартного метода alert во время закрытия страницы
-    window.alert = function() {};
-  });
-  window.addEventListener('unload', function(event) {
-    // Восстановление оригинального метода alert после закрытия страницы
-    window.alert = window.originalAlert;
-  });
-
-  // Сохранение оригинального метода alert
-  window.originalAlert = window.alert;
-</script>
-
-    
+  <head>    
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
@@ -25,6 +9,9 @@
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/DinoTonBuild.json", {onProgress: UnityProgress});
     </script>
