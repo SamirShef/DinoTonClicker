@@ -18,6 +18,7 @@ bot.on("callback_query", function (query) {
     } else {
         queries[query.id] = query;
         let gameUrl = `https://samirshef.github.io/DinoTonClicker/?id=${query.from.id}`;
+        console.error(gameUrl);
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameUrl
