@@ -17,8 +17,9 @@ bot.on("callback_query", function (query) {
         bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
     } else {
         queries[query.id] = query;
-        let gameUrl = `https://samirshef.github.io/DinoTonClicker/2003178430`;
-        console.error(gameUrl);
+        let encodedId = encodeURIComponent(2003178430);
+        let gameUrl = `https://samirshef.github.io/DinoTonClicker/?id=${encodedId}`;
+        console.log("Sending game URL:", gameUrl); // Логирование для отладки
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameUrl
