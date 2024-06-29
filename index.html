@@ -45,19 +45,15 @@
       </div>
 
     <script type="text/javascript">
-        // Эта функция должна быть вызвана из Unity после загрузки страницы
-        function GetTelegramId() {
-            // Проверяем, доступно ли хранилище
-            if (typeof(Storage) !== "undefined") {
-                // Получаем Telegram ID из Local Storage
-                var telegramId = localStorage.getItem('telegramId');
-                // Возвращаем ID или 'unknown', если ID не найден
-                return telegramId ? telegramId : 'unknown';
-            } else {
-                // Если Local Storage не поддерживается, возвращаем 'unknown'
-                return 'unknown';
-            }
+        window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const telegramId = urlParams.get('telegramId'); // Имя параметра должно соответствовать тому, что вы отправили
+      
+        // Сохраняем Telegram ID в Local Storage
+        if (telegramId) {
+          localStorage.setItem('telegramId', telegramId);
         }
+      };
     </script>
     
     <script>
