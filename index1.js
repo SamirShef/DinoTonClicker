@@ -15,14 +15,14 @@ bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want 
 //    bot.sendGame(msg.from.id, gameName));
 //    chatId = msg.chat.id;
 //}
-bot.onText(/start/, (msg) => {
+bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const gameUrl = 'https://samirshef.github.io/DinoTonClicker/?telegramId=${chatId}';
 
   const options = {
     reply_markup: JSON.stringify({
       inline_keyboard: [
-        [{text: 'Играть', callback_game: JSON.stringify({game_short_name: 'your_game_short_name'})}]
+        [{text: 'Играть', callback_game: JSON.stringify({game_short_name: 'DinoTon'})}]
       ]
     })
   };
