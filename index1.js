@@ -11,11 +11,11 @@ const gameName = "DinoTon";
 const chatId = 0;
 const queries = {};
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
-bot.onText(/help/, (msg) => {
-    bot.sendMessage(msg.from.id, "Say /game if you want to play."));
+bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want to play."));
+bot.onText(/start/, (msg) => {
+    bot.sendGame(msg.from.id, gameName));
     chatId = msg.chat.id;
 }
-bot.onText(/start/, (msg) => bot.sendGame(msg.from.id, gameName));
 //bot.onText(/start/, (msg) => {
 //  const chatId = msg.chat.id;
 //  // Отправляем ответное сообщение с ID пользователя
