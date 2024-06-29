@@ -17,12 +17,11 @@ bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want 
 //}
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  const gameUrl = 'https://samirshef.github.io/DinoTonClicker/?telegramId=${chatId}';
 
   const options = {
     reply_markup: JSON.stringify({
       inline_keyboard: [
-        [{text: 'Играть', callback_game: JSON.stringify({game_short_name: 'DinoTon'})}]
+        [{text: 'Играть', callback_game: JSON.stringify({game_short_name: gameName})}]
       ]
     })
   };
@@ -30,12 +29,10 @@ bot.onText(/\/start/, (msg) => {
   bot.sendMessage(chatId, 'Нажмите кнопку ниже, чтобы начать игру!', options);
 });
 bot.on('callback_query', function onCallbackQuery(callbackQuery) {
-  const action = callbackQuery.data;
-  const msg = callbackQuery.message;
+  const telegramId = callbackQuery.from.id; // ID пользователя
+  const gameUrl = `https://samirshef.github.io/DinoTonClicker/play?telegramId=${telegramId}`;
   const opts = {
-    chat_id: msg.chat.id,
-    message_id: msg.message_id,
-    game_short_name: 'DinoTon'
+    url: gameUrl
   };
   bot.answerCallbackQuery(callbackQuery.id, opts);
 });
