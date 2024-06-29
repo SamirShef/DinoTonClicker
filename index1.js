@@ -12,12 +12,18 @@ const queries = {};
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want to play."));
 bot.onText(/start/, (msg) => bot.sendGame(msg.from.id, gameName));
+const chatId = ;
+bot.on('message', (msg) => {
+  chatId = msg.chat.id;
+  // Отправляем ответное сообщение с ID пользователя
+  bot.sendMessage(chatId, `Ваш Telegram ID: ${chatId}`);
+});
 bot.on("callback_query", function (query) {
     if (query.game_short_name !== gameName) {
         bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
     } else {
         queries[query.id] = query;
-        let gameUrl = `https://samirshef.github.io/DinoTonClicker/?id=2003178430`;
+        let gameUrl = `https://samirshef.github.io/DinoTonClicker/?id=${chatId}`;
         console.log("Sending game URL:", gameUrl); // Логирование для отладки
         bot.answerCallbackQuery({
             callback_query_id: query.id,
