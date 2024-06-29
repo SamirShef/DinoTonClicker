@@ -8,20 +8,19 @@ const bot = new TelegramBot(TOKEN, {
 });
 const port = process.env.PORT || 5000;
 const gameName = "DinoTon";
-const chatId = 0;
 const queries = {};
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want to play."));
-bot.onText(/start/, (msg) => {
-    bot.sendGame(msg.from.id, gameName));
-    chatId = msg.chat.id;
-}
 //bot.onText(/start/, (msg) => {
-//  const chatId = msg.chat.id;
-//  // Отправляем ответное сообщение с ID пользователя
-//  gameUrl = `https://samirshef.github.io/DinoTonClicker/?telegramId=${chatId}`;
-//  bot.sendMessage(chatId, `Нажмите здесь, чтобы начать игру: ${gameUrl}`);
-//});
+//    bot.sendGame(msg.from.id, gameName));
+//    chatId = msg.chat.id;
+//}
+bot.onText(/start/, (msg) => {
+  const chatId = msg.chat.id;
+  // Отправляем ответное сообщение с ID пользователя
+  gameUrl = `https://samirshef.github.io/DinoTonClicker/?telegramId=${chatId}`;
+  bot.sendMessage(chatId, `Нажмите здесь, чтобы начать игру: ${gameUrl}`);
+});
 bot.on("callback_query", function (query) {
     if (query.game_short_name !== gameName) {
         bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
