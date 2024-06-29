@@ -22,25 +22,22 @@ bot.onText(/start/, (msg) => {
   const options = {
     reply_markup: JSON.stringify({
       inline_keyboard: [
-        [{text: 'Играть', url: gameUrl}]
+        [{text: 'Играть', callback_game: JSON.stringify({game_short_name: 'your_game_short_name'})}]
       ]
     })
   };
 
   bot.sendMessage(chatId, 'Нажмите кнопку ниже, чтобы начать игру!', options);
 });
-bot.on("callback_query", function (query) {
-    if (query.game_short_name !== gameName) {
-        bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
-    } else {
-        queries[query.id] = query;
-        const gameUrl = `https://samirshef.github.io/DinoTonClicker/?telegramId=${chatId}`;
-        console.log("Sending game URL:", gameUrl); // Логирование для отладки
-        bot.answerCallbackQuery({
-            callback_query_id: query.id,
-            url: gameUrl
-        });
-    }
+bot.on('callback_query', function onCallbackQuery(callbackQuery) {
+  const action = callbackQuery.data;
+  const msg = callbackQuery.message;
+  const opts = {
+    chat_id: msg.chat.id,
+    message_id: msg.message_id,
+    game_short_name: 'DinoTon'
+  };
+  bot.answerCallbackQuery(callbackQuery.id, opts);
 });
 bot.on("inline_query", function (iq) {
     bot.answerInlineQuery(iq.id, [{
