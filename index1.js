@@ -15,7 +15,7 @@ bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want 
 bot.onText(/start/, (msg) => {
   const chatId = msg.chat.id;
   // Отправляем ответное сообщение с ID пользователя
-  //const gameUrl = `https://yourgame.com/play?telegramId=${telegramId}`;
+  const gameUrl = `https://samirshef.github.io/DinoTonClicker/?telegramId=${telegramId}`;
   bot.sendMessage(chatId, `Ваш Telegram ID: ${chatId}`);
 });
 //bot.on("callback_query", function (query) {
