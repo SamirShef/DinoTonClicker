@@ -12,7 +12,7 @@ const queries = {};
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want to play."));
 //bot.onText(/start/, (msg) => bot.sendGame(msg.from.id, gameName));
-bot.on('message', (msg) => {
+bot.onText(/start/, (msg) => {
   const chatId = msg.chat.id;
   // Отправляем ответное сообщение с ID пользователя
   //const gameUrl = `https://yourgame.com/play?telegramId=${telegramId}`;
