@@ -17,6 +17,7 @@ bot.onText(/start/, (msg) => {
   // Отправляем ответное сообщение с ID пользователя
   const gameUrl = `https://samirshef.github.io/DinoTonClicker/?telegramId=${chatId}`;
   bot.sendMessage(chatId, `Ваш Telegram ID: ${chatId}`);
+  bot.sendMessage(chatId, `Нажмите здесь, чтобы начать игру: ${gameUrl}`);
 });
 //bot.on("callback_query", function (query) {
 //    if (query.game_short_name !== gameName) {
