@@ -12,25 +12,25 @@ const queries = {};
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want to play."));
 bot.onText(/start/, (msg) => bot.sendGame(msg.from.id, gameName));
-const chatId = ;
 bot.on('message', (msg) => {
-  chatId = msg.chat.id;
+  const chatId = msg.chat.id;
   // Отправляем ответное сообщение с ID пользователя
+  //const gameUrl = `https://yourgame.com/play?telegramId=${telegramId}`;
   bot.sendMessage(chatId, `Ваш Telegram ID: ${chatId}`);
 });
-bot.on("callback_query", function (query) {
-    if (query.game_short_name !== gameName) {
-        bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
-    } else {
-        queries[query.id] = query;
-        let gameUrl = `https://samirshef.github.io/DinoTonClicker/?id=${chatId}`;
-        console.log("Sending game URL:", gameUrl); // Логирование для отладки
-        bot.answerCallbackQuery({
-            callback_query_id: query.id,
-            url: gameUrl
-        });
-    }
-});
+//bot.on("callback_query", function (query) {
+//    if (query.game_short_name !== gameName) {
+//        bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
+//    } else {
+//        queries[query.id] = query;
+//        let gameUrl = `https://samirshef.github.io/DinoTonClicker/?id=${chatId}`;
+//        console.log("Sending game URL:", gameUrl); // Логирование для отладки
+//        bot.answerCallbackQuery({
+//            callback_query_id: query.id,
+//            url: gameUrl
+//        });
+//    }
+//});
 bot.on("inline_query", function (iq) {
     bot.answerInlineQuery(iq.id, [{
         type: "game",
