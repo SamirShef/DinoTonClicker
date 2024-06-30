@@ -18,14 +18,14 @@ bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want 
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const options = {
-    reply_markup: JSON.stringify({
-      inline_keyboard: [
-        [{ text: 'Играть', callback_game: JSON.stringify({ game_short_name: gameName }) }]
-      ]
-    })
-  };
+  //  reply_markup: JSON.stringify({
+  //    inline_keyboard: [
+  //      [{ text: 'Играть', callback_game: JSON.stringify({ game_short_name: gameName }) }]
+  //    ]
+  //  })
+  //};
 
-  bot.sendMessage(chatId, 'Нажмите, чтобы играть!', options);
+  bot.sendMessage(chatId, 'Нажмите, чтобы играть!');
 });
 bot.on('callback_query', function onCallbackQuery(callbackQuery) {
   const telegramId = callbackQuery.from.id; // ID пользователя
