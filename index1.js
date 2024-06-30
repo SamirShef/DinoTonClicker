@@ -13,7 +13,7 @@ const chatId = 0;
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /start if you want to play."));
 bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id;
+  chatId = msg.chat.id;
   bot.sendGame(msg.from.id, gameName);
 });
 bot.on("callback_query", function (query) {
