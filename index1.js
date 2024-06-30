@@ -9,29 +9,24 @@ const bot = new TelegramBot(TOKEN, {
 const port = process.env.PORT || 5000;
 const gameName = "DinoTon";
 const queries = {};
+const chatId = 0;
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
-bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want to play."));
+bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /start if you want to play."));
 bot.onText(/start/, (msg) => {
-    bot.sendGame(msg.from.id, gameName));
     chatId = msg.chat.id;
+    bot.sendGame(msg.from.id, gameName));
 }
-//bot.onText(/\/start/, (msg) => {
-//  const chatId = msg.chat.id;
-//  const options = {
-  //  reply_markup: JSON.stringify({
-  //    inline_keyboard: [
-  //      [{ text: 'Играть', callback_game: JSON.stringify({ game_short_name: gameName }) }]
-  //    ]
-  //  })
-  //};
-
-//  bot.sendMessage(chatId, 'Нажмите, чтобы играть!');
-//});
-bot.on('callback_query', function onCallbackQuery(callbackQuery) {
-  const telegramId = callbackQuery.from.id; // ID пользователя
-  const gameUrl = `https://samirshef.github.io/DinoTonClicker/?telegramId=${telegramId}`;
-
-  bot.answerCallbackQuery(callbackQuery.id, { url: gameUrl });
+bot.on("callback_query", function (query) {
+    if (query.game_short_name !== gameName) {
+        bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
+    } else {
+        queries[query.id] = query;
+        let gameurl = `https://samirshef.github.io/DinoTonClicker/?id=${chatId}`;
+        bot.answerCallbackQuery({
+            callback_query_id: query.id,
+            url: gameurl
+        });
+    }
 });
 bot.on("inline_query", function (iq) {
     bot.answerInlineQuery(iq.id, [{
