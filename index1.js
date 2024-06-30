@@ -11,13 +11,13 @@ const gameName = "DinoTon";
 const queries = {};
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /game if you want to play."));
-//bot.onText(/start/, (msg) => {
-//    bot.sendGame(msg.from.id, gameName));
-//    chatId = msg.chat.id;
-//}
-bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id;
-  const options = {
+bot.onText(/start/, (msg) => {
+    bot.sendGame(msg.from.id, gameName));
+    chatId = msg.chat.id;
+}
+//bot.onText(/\/start/, (msg) => {
+//  const chatId = msg.chat.id;
+//  const options = {
   //  reply_markup: JSON.stringify({
   //    inline_keyboard: [
   //      [{ text: 'Играть', callback_game: JSON.stringify({ game_short_name: gameName }) }]
@@ -25,8 +25,8 @@ bot.onText(/\/start/, (msg) => {
   //  })
   //};
 
-  bot.sendMessage(chatId, 'Нажмите, чтобы играть!');
-});
+//  bot.sendMessage(chatId, 'Нажмите, чтобы играть!');
+//});
 bot.on('callback_query', function onCallbackQuery(callbackQuery) {
   const telegramId = callbackQuery.from.id; // ID пользователя
   const gameUrl = `https://samirshef.github.io/DinoTonClicker/?telegramId=${telegramId}`;
