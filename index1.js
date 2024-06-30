@@ -12,7 +12,10 @@ const queries = {};
 const chatId = 0;
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /start if you want to play."));
-bot.onText(/start/, (msg) => bot.sendGame(msg.from.id, gameName));
+bot.onText(/start/, (msg) => {
+    bot.sendGame(msg.from.id, gameName));
+    chatId = msg.chat.id;
+}
 bot.on("callback_query", function (query) {
     if (query.game_short_name !== gameName) {
         bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
