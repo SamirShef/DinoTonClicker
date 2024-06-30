@@ -3200,6 +3200,21 @@ function _GetJSON(path, objectName, callBack, fallBack, index) {
   console.log("FallBack");
  }
 }
+function _GetJSON2(path, objectName, callBack, fallBack) {
+ var parsedPath = UTF8ToString(path);
+ var parsedObjectName = UTF8ToString(objectName);
+ var parsedCallBack = UTF8ToString(callBack);
+ var parsedFallBack = UTF8ToString(fallBack);
+ try {
+  firebase.database().ref(parsedPath).once("value").then((function(snapshot) {
+   unityInstance.Module.SendMessage(parsedObjectName, parsedCallBack, JSON.stringify(snapshot.val()));
+   console.log("CallBack");
+  }));
+ } catch (error) {
+  unityInstance.Module.SendMessage(parsedObjectName, parsedFallBack, "Error: " + error.message);
+  console.log("FallBack");
+ }
+}
 function _JS_Cursor_SetImage(ptr, length) {
  var binary = "";
  for (var i = 0; i < length; i++) binary += String.fromCharCode(HEAPU8[ptr + i]);
@@ -17213,6 +17228,7 @@ Module.asmLibraryArg = {
  "invoke_vjiiii": invoke_vjiiii,
  "invoke_vjji": invoke_vjji,
  "_GetJSON": _GetJSON,
+ "_GetJSON2": _GetJSON2,
  "_JS_Cursor_SetImage": _JS_Cursor_SetImage,
  "_JS_Cursor_SetShow": _JS_Cursor_SetShow,
  "_JS_Eval_ClearInterval": _JS_Eval_ClearInterval,
