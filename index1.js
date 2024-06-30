@@ -9,7 +9,7 @@ const bot = new TelegramBot(TOKEN, {
 const port = process.env.PORT || 5000;
 const gameName = "DinoTon";
 const queries = {};
-const chatId = 0;
+let chatId = 0;
 server.use(express.static(path.join(__dirname, 'DinoTonClicker')));
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Say /start if you want to play."));
 bot.onText(/\/start/, (msg) => {
